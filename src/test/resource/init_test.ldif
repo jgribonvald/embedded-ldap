@@ -1,0 +1,140 @@
+version: 1
+
+dn: dc=esco-centre,dc=fr
+dc: esco-centre
+objectClass: dcObject
+objectClass: organization
+description: Racine pour l'annuaire en Region Centre
+o: Refentiel esco-centre
+
+dn: ou=structures,dc=esco-centre,dc=fr
+objectClass: organizationalUnit
+ou: structures
+
+dn: ou=groups, dc=esco-centre,dc=fr
+objectClass: organizationalUnit
+ou: groups
+
+dn: ou=people, dc=esco-centre,dc=fr
+objectClass: organizationalUnit
+ou: people
+
+dn: uid=user1,ou=people, dc=esco-centre,dc=fr
+objectClass: top
+objectClass: inetOrgPerson
+objectClass: person
+objectClass: eduMember
+cn: User One
+sn: User
+uid: user1
+isMemberOf: head:organizations:organization_A:employee:faculty
+isMemberOf: head:organizations:organization_C:employee:administrative
+isMemberOf: head:administrators:tenant1
+isMemberOf: head:administrators:tenant3
+isMemberOf: head:organizations:organization_A:all_organization_A
+isMemberOf: head:organizations:organization_C:all_organization_C
+
+dn: uid=user2,ou=people, dc=esco-centre,dc=fr
+objectClass: top
+objectClass: inetOrgPerson
+objectClass: person
+objectClass: eduMember
+cn: User Two
+sn: User
+uid: user2
+isMemberOf: head:applications:courses:tenant1
+isMemberOf: head:organizations:organization_A:employee:faculty
+isMemberOf: head:organizations:organization_A:all_organization_A
+
+dn: uid=user3,ou=people, dc=esco-centre,dc=fr
+objectClass: top
+objectClass: inetOrgPerson
+objectClass: person
+objectClass: eduMember
+cn: User Three
+sn: User
+uid: user3
+isMemberOf: head:applications:courses:tenant1
+isMemberOf: head:organizations:organization_A:student:master degree
+isMemberOf: head:organizations:organization_A:all_organization_A
+
+
+dn: cn=head:organizations:organization_A:student:master degree,ou=groups,dc=esco-centre,dc=fr
+objectClass: groupOfNames
+objectClass: eduMember
+cn: head:organizations:organization_A:student:master degree
+member: uid=user3,ou=people,dc=esco-centre,dc=fr
+hasMember: user3
+isMemberOf: head:organizations:organization_A:all_organization_A
+isMemberOf: head:applications:courses:tenant1
+
+dn: cn=head:organizations:organization_A:employee:faculty,ou=groups,dc=esco-centre,dc=fr
+objectClass: groupOfNames
+objectClass: eduMember
+cn: head:organizations:organization_A:employee:faculty
+member: uid=user1,ou=people,dc=esco-centre,dc=fr
+member: uid=user2,ou=people,dc=esco-centre,dc=fr
+hasMember: user1
+hasMember: user2
+isMemberOf: head:organizations:organization_A:all_organization_A
+isMemberOf: head:applications:courses:tenant1
+
+dn: cn=head:organizations:organization_C:employee:administrative,ou=groups,dc=esco-centre,dc=fr
+objectClass: groupOfNames
+objectClass: eduMember
+cn: head:organizations:organization_A:employee:administrative
+member: uid=user1,ou=people,dc=esco-centre,dc=fr
+hasMember: user1
+isMemberOf: head:organizations:organization_C:all_organization_C
+
+dn: cn=head:administrators:tenant1,ou=groups,dc=esco-centre,dc=fr
+objectClass: groupOfNames
+objectClass: eduMember
+cn: head:administrators:tenant1
+member: uid=user1,ou=people,dc=esco-centre,dc=fr
+hasMember: user1
+
+dn: cn=head:administrators:tenant3,ou=groups,dc=esco-centre,dc=fr
+objectClass: groupOfNames
+objectClass: eduMember
+cn: head:administrators:tenant3
+member: uid=user1,ou=people,dc=esco-centre,dc=fr
+hasMember: user1
+
+dn: cn=head:applications:courses:tenant1,ou=groups,dc=esco-centre,dc=fr
+objectClass: groupOfNames
+objectClass: eduMember
+cn: head:applications:courses:tenant1
+member: uid=user2,ou=people,dc=esco-centre,dc=fr
+member: uid=user3,ou=people,dc=esco-centre,dc=fr
+member: cn=head:organizations:organization_A:student:master degree,ou=groups,dc=esco-centre,dc=fr
+member: cn=head:organizations:organization_A:employee:faculty,ou=groups,dc=esco-centre,dc=fr
+hasMember: user2
+hasMember: user3
+hasMember: head:organizations:organization_A:student:master degree
+hasMember: head:organizations:organization_A:employee:faculty
+
+dn: cn=head:organizations:organization_A:all_organization_A,ou=groups,dc=esco-centre,dc=fr
+objectClass: groupOfNames
+objectClass: eduMember
+cn: head:organizations:organization_A:all_organization_A
+member: uid=user1,ou=people,dc=esco-centre,dc=fr
+member: uid=user2,ou=people,dc=esco-centre,dc=fr
+member: uid=user3,ou=people,dc=esco-centre,dc=fr
+member: cn=head:organizations:organization_A:student:master degree,ou=groups,dc=esco-centre,dc=fr
+member: cn=head:organizations:organization_A:employee:faculty,ou=groups,dc=esco-centre,dc=fr
+hasMember: user1
+hasMember: user2
+hasMember: user3
+hasMember: head:organizations:organization_A:student:master degree
+hasMember: head:organizations:organization_A:employee:faculty
+
+dn: cn=head:organizations:organization_C:all_organization_C,ou=groups,dc=esco-centre,dc=fr
+objectClass: groupOfNames
+objectClass: eduMember
+cn: head:organizations:organization_C:all_organization_C
+member: uid=user1,ou=people,dc=esco-centre,dc=fr
+member: cn=head:organizations:organization_C:employee:administrative,ou=groups,dc=esco-centre,dc=fr
+hasMember: user1
+hasMember: head:organizations:organization_C:employee:administrative
+
